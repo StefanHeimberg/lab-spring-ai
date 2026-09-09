@@ -1,0 +1,4 @@
+# Maven
+target/
+# JetBrains IDEs (.idea folder)
+.idea/
