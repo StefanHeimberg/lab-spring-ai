@@ -27,7 +27,7 @@ public class ChatClientTest {
         final ChatClient chatClient = chatClientBuilder.build();
         final String content = chatClient.prompt()
                 .options(OpenAiChatOptions.builder()
-                        .model("openai/gpt-oss-20b"))
+                        .model("openai/gpt-oss-120b"))
                 .system("Du bist ein hilfsbereiter Assistent")
                 .user("Antworte mir bitte nur mit dem Text BANANE_%s".formatted(uuid))
                 .call()
@@ -42,7 +42,7 @@ public class ChatClientTest {
         final ChatClient chatClient = chatClientBuilder.build();
         final ChatResponse chatResponse = chatClient.prompt()
                 .options(OpenAiChatOptions.builder()
-                        .model("openai/gpt-oss-20b"))
+                        .model("openai/gpt-oss-120b"))
                 .system("Du bist ein hilfsbereiter Assistent")
                 .user("Antworte mir bitte nur mit dem Text BANANE_%s".formatted(uuid))
                 .call()
