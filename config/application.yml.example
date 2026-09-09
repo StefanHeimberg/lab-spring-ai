@@ -1,0 +1,6 @@
+---
+spring:
+  ai:
+    openai:
+      base-url:
+      api-key:
