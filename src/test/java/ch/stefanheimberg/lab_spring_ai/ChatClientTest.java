@@ -28,8 +28,8 @@ public class ChatClientTest {
         final String content = chatClient.prompt()
                 .options(OpenAiChatOptions.builder()
                         .model("openai/gpt-oss-20b"))
-                .system("Antworte mir bitte nur mit dem Text BANANE_%s".formatted(uuid))
-                .user("Hallo")
+                .system("Du bist ein hilfsbereiter Assistent")
+                .user("Antworte mir bitte nur mit dem Text BANANE_%s".formatted(uuid))
                 .call()
                 .content();
         assertEquals(content, "BANANE_%s".formatted(uuid));
@@ -43,8 +43,8 @@ public class ChatClientTest {
         final ChatResponse chatResponse = chatClient.prompt()
                 .options(OpenAiChatOptions.builder()
                         .model("openai/gpt-oss-20b"))
-                .system("Antworte mir bitte nur mit dem Text BANANE_%s".formatted(uuid))
-                .user("Hallo")
+                .system("Du bist ein hilfsbereiter Assistent")
+                .user("Antworte mir bitte nur mit dem Text BANANE_%s".formatted(uuid))
                 .call()
                 .chatResponse();
 
