@@ -1,0 +1,57 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  "logLevel": "INFO",
+
+  "enabled_providers": [
+    "heimnet-ai"
+  ],
+
+  "model": "heimnet-ai/qwen/qwen3-next-80b-a3b-instruct",
+  "small_model": "heimnet-ai/qwen/qwen3.5-9b",
+
+  "permission": {
+    "*": "ask",
+    "read": "allow",
+    "glob": "allow",
+    "grep": "allow",
+    "question": "allow",
+    "webfetch": "ask",
+    "websearch": "ask",
+    "todowrite": "allow",
+    "bash": {
+      "*": "ask",
+      "git log *": "allow",
+      "git status *": "allow",
+      "git diff *": "allow"
+    }
+  },
+
+  "agent": {
+    "plan": {
+      "temperature": 0.2
+    },
+    "build": {
+      "temperature": 0.2
+    }
+  },
+
+  "provider": {
+    "heimnet-ai": {
+      "name": "Heimnet AI",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://llm.ai.heimnet.ch/v1"
+      },
+      "models": {
+        "qwen/qwen3.5-9b": {
+          "name": "Qwen3.5 9B"
+        },
+        "qwen/qwen3-next-80b-a3b-instruct": {
+          "name": "Qwen3 Next 30B A3B Instruct"
+        }
+      }
+    }
+  }
+
+}
