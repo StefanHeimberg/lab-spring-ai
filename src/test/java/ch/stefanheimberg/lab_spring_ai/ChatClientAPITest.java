@@ -1,13 +1,17 @@
 package ch.stefanheimberg.lab_spring_ai;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.messages.AssistantMessage;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.model.Generation;
-import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,20 +19,24 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-public class ChatClientTest {
+public class ChatClientAPITest {
 
     @Autowired
     private ChatClient.Builder chatClientBuilder;
+
+    @BeforeEach
+    public void setup() {
+        chatClientBuilder
+                .defaultSystem("Du bist ein hilfsbereiter Assistent")
+                .defaultAdvisors(new SimpleLoggerAdvisor());
+    }
 
     @Test
     void simpleCall() {
         final String uuid = UUID.randomUUID().toString();
 
-        final ChatClient chatClient = chatClientBuilder.build();
-        final String content = chatClient.prompt()
-                .options(OpenAiChatOptions.builder()
-                        .model("openai/gpt-oss-120b"))
-                .system("Du bist ein hilfsbereiter Assistent")
+        final String content = chatClientBuilder.build()
+                .prompt()
                 .user("Antworte mir bitte nur mit dem Text BANANE_%s".formatted(uuid))
                 .call()
                 .content();
@@ -39,11 +47,8 @@ public class ChatClientTest {
     void simpleCall_chatResponse() {
         final String uuid = UUID.randomUUID().toString();
 
-        final ChatClient chatClient = chatClientBuilder.build();
-        final ChatResponse chatResponse = chatClient.prompt()
-                .options(OpenAiChatOptions.builder()
-                        .model("openai/gpt-oss-120b"))
-                .system("Du bist ein hilfsbereiter Assistent")
+        final ChatResponse chatResponse = chatClientBuilder.build()
+                .prompt()
                 .user("Antworte mir bitte nur mit dem Text BANANE_%s".formatted(uuid))
                 .call()
                 .chatResponse();

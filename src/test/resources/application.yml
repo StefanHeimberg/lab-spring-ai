@@ -2,5 +2,9 @@
 spring:
   ai:
     openai:
-      base-url: ${OPENAI_API_BASE}
-      api-key: ${OPENAI_API_KEY}
+      #base-url:
+      #api-key:
+      chat:
+        model: qwen/qwen3.8-27b
+      embedding:
+        model: qwen/qwen3-embedding-8b
