@@ -1,4 +1,4 @@
-package ch.stefanheimberg.lab_spring_ai.tools;
+package ch.stefanheimberg.lab_spring_ai.toolcalling.tools;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

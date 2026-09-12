@@ -9,6 +9,31 @@ services:
       - "5432:5432"
     volumes:
       - pgvector_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  mcp_streamable:
+    # https://github.com/modelcontextprotocol/servers/blob/main/src/everything/README.md
+    image: node:22-alpine
+    command: npx -y @modelcontextprotocol/server-everything streamableHttp
+    ports:
+      - "3001:3001"
+    restart: unless-stopped
+
+  mcp_sse:
+    # https://github.com/modelcontextprotocol/servers/blob/main/src/everything/README.md
+    image: node:22-alpine
+    command: npx -y @modelcontextprotocol/server-everything sse
+    ports:
+      - "3002:3001"
+    restart: unless-stopped
+
+#  mcp_stdio:
+#    # https://github.com/modelcontextprotocol/servers/blob/main/src/everything/README.md
+#    image: node:22-alpine
+#    command: npx -y @modelcontextprotocol/server-everything stdio
+#    ports:
+#      - "3003:3001"
+#    restart: unless-stopped
 
 volumes:
   pgvector_data:

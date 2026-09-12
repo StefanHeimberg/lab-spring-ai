@@ -1,9 +1,8 @@
-package ch.stefanheimberg.lab_spring_ai;
+package ch.stefanheimberg.lab_spring_ai.toolcalling;
 
-import ch.stefanheimberg.lab_spring_ai.tools.DateTimeTools;
-import ch.stefanheimberg.lab_spring_ai.tools.WeatherTools;
+import ch.stefanheimberg.lab_spring_ai.toolcalling.tools.DateTimeTools;
+import ch.stefanheimberg.lab_spring_ai.toolcalling.tools.WeatherTools;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;

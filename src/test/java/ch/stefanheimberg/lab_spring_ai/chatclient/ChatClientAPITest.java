@@ -1,4 +1,4 @@
-package ch.stefanheimberg.lab_spring_ai;
+package ch.stefanheimberg.lab_spring_ai.chatclient;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
