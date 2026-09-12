@@ -3,6 +3,7 @@ package ch.stefanheimberg.lab_spring_ai.toolcalling;
 import ch.stefanheimberg.lab_spring_ai.toolcalling.tools.DateTimeTools;
 import ch.stefanheimberg.lab_spring_ai.toolcalling.tools.WeatherTools;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
@@ -120,6 +121,9 @@ public class ToolCallingTest {
     }
 
     @Test
+    @Disabled
+    // INFO: deaktiviert. kann manuell ausgeführt werden. hat teilweise zu einem endlosloop in llama-cpp gerührt und der
+    // prozess musste server seitig abgeschlossen werden. Modell: Qwen2.8-27B
     void methodToolCallback() {
         final ChatClient chatClient = chatClientBuilder.build();
 
@@ -193,6 +197,9 @@ public class ToolCallingTest {
     }
 
     @Test
+    @Disabled
+    // INFO: deaktiviert. kann manuell ausgeführt werden. hat teilweise zu einem endlosloop in llama-cpp gerührt und der
+    // prozess musste server seitig abgeschlossen werden. Modell: Qwen2.8-27B
     void functionToolCallback() {
         final ChatClient chatClient = chatClientBuilder.build();
 
