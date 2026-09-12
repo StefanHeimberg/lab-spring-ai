@@ -12,3 +12,14 @@ spring:
         model: qwen/qwen3.8-27b
       embedding:
         model: qwen/qwen3-embedding-8b
+    mcp:
+      client:
+        sse:
+          connections:
+            local_mcp_sse:
+              url: http://localhost:3001
+
+        streamable-http:
+          connections:
+            local_mcp_streamable:
+              url: http://localhost:3002
