@@ -1,4 +1,4 @@
-package ch.stefanheimberg.lab_spring_ai;
+package ch.stefanheimberg.lab_spring_ai.tools;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +20,7 @@ public class DateTimeTools {
         return LocalDateTime.now().atZone(LocaleContextHolder.getTimeZone().toZoneId()).toString();
     }
 
-    String getAlarm() {
+    public String getAlarm() {
         LOGGER.info("function getAlarm() called");
         if (null == alarm) {
             return null;
