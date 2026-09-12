@@ -31,8 +31,9 @@ export OPENAI_API_KEY=<api-key>
 
 ```bash
 curl -N http://localhost:3001/sse
+```
 
-➜  ~ curl -N http://localhost:3001/sse
+```bash
 event: endpoint
 data: /message?sessionId=abc123
 ```
