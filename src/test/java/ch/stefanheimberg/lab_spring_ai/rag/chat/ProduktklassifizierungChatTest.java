@@ -143,4 +143,40 @@ public class ProduktklassifizierungChatTest {
 
         assertEquals("K008: Gaming-Monitore", content);
     }
+
+    @Test
+    public void test_K007_ProfessionalDisplays() {
+        final ChatClient chatClient = chatClientBuilder.build();
+
+        final String conversationId = UUID.randomUUID().toString();
+
+        final String prompt = """
+                # Aufgabe
+                Klassifizieren mir dieses Produkt anhand der Produktbeschreibung. Antworte mit "{ID}: {TITLE}"
+                
+                # Produktbeschreibung
+                Der ProArt PA32KCX von ASUS ist ein hochentwickelter 32-Zoll-PC-Monitor, der speziell für professionelle
+                Anwendungen konzipiert wurde. Mit einer beeindruckenden 8K UHD-Auflösung von 7680 x 4320 Pixeln bietet
+                dieser Monitor eine aussergewöhnliche Bildqualität, die selbst die feinsten Details präzise darstellt.
+                Die Mini-LED-Hintergrundbeleuchtung mit 4.032 Zonen sorgt für eine hervorragende Helligkeit und
+                Kontrastverhältnisse, wodurch Bilder lebendig und realistisch wirken. Der Monitor ist mit einer
+                IPS-Panel-Technologie ausgestattet, die weite Betrachtungswinkel und eine konsistente Farbgenauigkeit
+                gewährleistet. Ein integrierter motorisierter Farbmesser ermöglicht eine automatische Kalibrierung, was
+                die Farbgenauigkeit für kreative Profis weiter optimiert. Mit einer Bildwiederholfrequenz von 60 Hz und
+                einer Helligkeit von bis zu 1000 cd/m² ist der ProArt PA32KCX ideal für grafikintensive Anwendungen,
+                Videobearbeitung und andere kreative Arbeiten.
+                
+                8K UHD Auflösung (7680 x 4320 Pixel) für aussergewöhnliche Bilddetails
+                Mini-LED-Hintergrundbeleuchtung mit 4.032 Zonen für verbesserte Helligkeit und Kontrast
+                Integrierter motorisierter Farbmesser für präzise Farbkalibrierung
+                IPS-Panel-Technologie für weite Betrachtungswinkel und konsistente Farbgenauigkeit.
+                """;
+
+        final String content = chatClient.prompt(prompt)
+                .advisors(a -> a.param(ChatMemory.CONVERSATION_ID, conversationId))
+                .call()
+                .content();
+
+        assertEquals("K007: Professional-Displays", content);
+    }
 }
