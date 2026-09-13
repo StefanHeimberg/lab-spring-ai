@@ -27,25 +27,25 @@ spring:
         model: qwen/qwen3.8-27b
       embedding:
         # wenn Qwen3 Embedding 0.6B
-        model: qwen/qwen3-embedding-0.6b
-        dimensions: 1024
+        #model: qwen/qwen3-embedding-0.6b
+        #dimensions: 1024
         # wenn Qwen3 Embedding 4B
         #model: qwen/qwen3-embedding-4b
         #dimensions: 2560
         # wenn Qwen3 Embedding 8B
-        #model: qwen/qwen3-embedding-8b
-        #dimensions: 4096
+        model: qwen/qwen3-embedding-8b
+        dimensions: 4096
     vectorstore:
       pgvector:
         initialize-schema: true
         index-type: NONE
         distance-type: COSINE_DISTANCE
         # wenn Qwen3 Embedding 0.6B
-        dimensions: 1024
+        #dimensions: 1024
         # wenn Qwen3 Embedding 4B
         #dimensions: 2560
         # wenn Qwen3 Embedding 8B
-        #dimensions: 4096
+        dimensions: 4096
         max-document-batch-size: 10000
   datasource:
     url: jdbc:postgresql://localhost:5432/springai-demo
