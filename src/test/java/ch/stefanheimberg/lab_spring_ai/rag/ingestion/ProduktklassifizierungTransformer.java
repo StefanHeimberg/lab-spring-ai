@@ -1,4 +1,4 @@
-package ch.stefanheimberg.lab_spring_ai.rag;
+package ch.stefanheimberg.lab_spring_ai.rag.ingestion;
 
 import org.springframework.ai.document.Document;
 import org.springframework.ai.transformer.splitter.TokenTextSplitter;

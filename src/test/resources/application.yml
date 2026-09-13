@@ -1,4 +1,9 @@
 ---
+application:
+  data:
+    produktlassifizierung:
+      file: data/b2b_produktklassifizierung_30_kategorien.xlsx
+
 logging:
   level:
     org.springframework.ai.chat.client.advisor: DEBUG

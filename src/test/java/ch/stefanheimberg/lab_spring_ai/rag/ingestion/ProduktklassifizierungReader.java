@@ -1,4 +1,4 @@
-package ch.stefanheimberg.lab_spring_ai.rag;
+package ch.stefanheimberg.lab_spring_ai.rag.ingestion;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
