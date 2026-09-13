@@ -1,15 +1,44 @@
 services:
-  pgvector:
-    image: pgvector/pgvector:pg17
-    environment:
-      POSTGRES_USER: springai-demo
-      POSTGRES_PASSWORD: springai-demo
-      POSTGRES_DB: springai-demo
+  db:
+    image: pgvector/pgvector:pg18
     ports:
       - "5432:5432"
+    environment:
+      POSTGRES_USER: springai-demo
+      POSTGRES_PASSWORD: springai-demo#123
+      POSTGRES_DB: springai-demo
+      PGDATA: /var/lib/postgresql/18/docker
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "casehub", "-d", "casehub" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     volumes:
-      - pgvector_data:/var/lib/postgresql/data
+      - db_data:/var/lib/postgresql
+      - ./container/db/initdb.d:/docker-entrypoint-initdb.d/:ro
     restart: unless-stopped
+
+  pgadmin:
+    image: dpage/pgadmin4
+    entrypoint: bash -x /entrypoint.sh
+    restart: unless-stopped
+    ports:
+      - "8888:80"
+    environment:
+      # https://www.pgadmin.org/docs/pgadmin4/latest/container_deployment.html
+      PGADMIN_DEFAULT_EMAIL: "springai-demo@stefanheimberg.ch"
+      PGADMIN_DEFAULT_PASSWORD: "springai-demo#321"
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
+      PGPASS_FILE: /pgadmin4/.pgpass
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+      - ./container/pgadmin/servers.json:/pgadmin4/servers.json:ro
+      - ./container/pgadmin/preferences.json:/pgadmin4/preferences.json:ro
+      - ./container/pgadmin/.pgpass:/pgadmin4/.pgpass:ro
+    depends_on:
+      db:
+        condition: service_healthy
 
   mcp_sse:
     # https://github.com/modelcontextprotocol/servers/blob/main/src/everything/README.md
@@ -36,4 +65,5 @@ services:
 #    restart: unless-stopped
 
 volumes:
-  pgvector_data:
+  db_data:
+  pgadmin_data:

@@ -5,6 +5,16 @@ logging:
 
 spring:
   ai:
+    mcp:
+      client:
+        sse:
+          connections:
+            local_mcp_sse:
+              url: http://localhost:3001
+        streamable-http:
+          connections:
+            local_mcp_streamable:
+              url: http://localhost:3002
     openai:
       #base-url:
       #api-key:
@@ -12,14 +22,17 @@ spring:
         model: qwen/qwen3.8-27b
       embedding:
         model: qwen/qwen3-embedding-8b
-    mcp:
-      client:
-        sse:
-          connections:
-            local_mcp_sse:
-              url: http://localhost:3001
-
-        streamable-http:
-          connections:
-            local_mcp_streamable:
-              url: http://localhost:3002
+    vectorstore:
+      pgvector:
+        initialize-schema: true
+        index-type: NONE
+        distance-type: COSINE_DISTANCE
+        dimensions: 4096
+        max-document-batch-size: 10000
+  datasource:
+    url: jdbc:postgresql://localhost:5432/springai-demo
+    username: springai-demo
+    password: springai-demo#123
+  jpa:
+    hibernate:
+      ddl-auto: update
